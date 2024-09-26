@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <title>Document</title>
+  </head>
+  <style>
+    
+.timeline {
+  display: flex;
+  flex-direction: column;
+  margin: 20px auto;
+  position: relative;
+}
+.timeline__event {
+  margin-bottom: 20px;
+  position: relative;
+  display: flex;
+  margin: 20px 0;
+  border-radius: 6px;
+  align-self: center;
+  width: 50vw;
+}
+.timeline__event:nth-child(2n+1) {
+  flex-direction: row-reverse;
+}
+.timeline__event:nth-child(2n+1) .timeline__event__date {
+  border-radius: 0 6px 6px 0;
+}
+.timeline__event:nth-child(2n+1) .timeline__event__content {
+  border-radius: 6px 0 0 6px;
+}
+.timeline__event:nth-child(2n+1) .timeline__event__icon:before {
+  content: "";
+  width: 2px;
+  height: 100%;
+  background: #f6a4ec;
+  position: absolute;
+  top: 0%;
+  left: 50%;
+  right: auto;
+  z-index: -1;
+  transform: translateX(-50%);
+  -webkit-animation: fillTop 2s forwards 4s ease-in-out;
+          animation: fillTop 2s forwards 4s ease-in-out;
+}
+.timeline__event:nth-child(2n+1) .timeline__event__icon:after {
+  content: "";
+  width: 100%;
+  height: 2px;
+  background: #f6a4ec;
+  position: absolute;
+  right: 0;
+  z-index: -1;
+  top: 50%;
+  left: auto;
+  transform: translateY(-50%);
+  -webkit-animation: fillLeft 2s forwards 4s ease-in-out;
+          animation: fillLeft 2s forwards 4s ease-in-out;
+}
+.timeline__event__title {
+  font-size: 1.2rem;
+  line-height: 1.4;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #9251ac;
+  letter-spacing: 1.5px;
+}
+.timeline__event__content {
+  padding: 20px;
+  box-shadow: 0 30px 60px -12px rgba(50, 50, 93, 0.25), 0 18px 36px -18px rgba(0, 0, 0, 0.3), 0 -12px 36px -8px rgba(0, 0, 0, 0.025);
+  background: #fff;
+  width: calc(40vw - 84px);
+  border-radius: 0 6px 6px 0;
+}
+.timeline__event__date {
+  color: #f6a4ec;
+  font-size: 1.5rem;
+  font-weight: 600;
+  background: #9251ac;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  padding: 0 20px;
+  border-radius: 6px 0 0 6px;
+}
+.timeline__event__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9251ac;
+  padding: 20px;
+  align-self: center;
+  margin: 0 20px;
+  background: #f6a4ec;
+  border-radius: 100%;
+  width: 40px;
+  box-shadow: 0 30px 60px -12px rgba(50, 50, 93, 0.25), 0 18px 36px -18px rgba(0, 0, 0, 0.3), 0 -12px 36px -8px rgba(0, 0, 0, 0.025);
+  padding: 40px;
+  height: 40px;
+  position: relative;
+}
+.timeline__event__icon i {
+  font-size: 32px;
+}
+.timeline__event__icon:before {
+  content: "";
+  width: 2px;
+  height: 100%;
+  background: #f6a4ec;
+  position: absolute;
+  top: 0%;
+  z-index: -1;
+  left: 50%;
+  transform: translateX(-50%);
+  -webkit-animation: fillTop 2s forwards 4s ease-in-out;
+          animation: fillTop 2s forwards 4s ease-in-out;
+}
+.timeline__event__icon:after {
+  content: "";
+  width: 100%;
+  height: 2px;
+  background: #f6a4ec;
+  position: absolute;
+  left: 0%;
+  z-index: -1;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-animation: fillLeftOdd 2s forwards 4s ease-in-out;
+          animation: fillLeftOdd 2s forwards 4s ease-in-out;
+}
+.timeline__event__description {
+  flex-basis: 60%;
+}
+.timeline__event--type2:after {
+  background: #555ac0;
+}
+.timeline__event--type2 .timeline__event__date {
+  color: #87bbfe;
+  background: #555ac0;
+}
+.timeline__event--type2:nth-child(2n+1) .timeline__event__icon:before, .timeline__event--type2:nth-child(2n+1) .timeline__event__icon:after {
+  background: #87bbfe;
+}
+.timeline__event--type2 .timeline__event__icon {
+  background: #87bbfe;
+  color: #555ac0;
+}
+.timeline__event--type2 .timeline__event__icon:before, .timeline__event--type2 .timeline__event__icon:after {
+  background: #87bbfe;
+}
+.timeline__event--type2 .timeline__event__title {
+  color: #555ac0;
+}
+.timeline__event--type3:after {
+  background: #24b47e;
+}
+.timeline__event--type3 .timeline__event__date {
+  color: #aff1b6;
+  background-color: #24b47e;
+}
+.timeline__event--type3:nth-child(2n+1) .timeline__event__icon:before, .timeline__event--type3:nth-child(2n+1) .timeline__event__icon:after {
+  background: #aff1b6;
+}
+.timeline__event--type3 .timeline__event__icon {
+  background: #aff1b6;
+  color: #24b47e;
+}
+.timeline__event--type3 .timeline__event__icon:before, .timeline__event--type3 .timeline__event__icon:after {
+  background: #aff1b6;
+}
+.timeline__event--type3 .timeline__event__title {
+  color: #24b47e;
+}
+.timeline__event:last-child .timeline__event__icon:before {
+  content: none;
+}
+
+@media (max-width: 786px) {
+  .timeline__event {
+    flex-direction: column;
+    align-self: center;
+  }
+  .timeline__event__content {
+    width: 100%;
+  }
+  .timeline__event__icon {
+    border-radius: 6px 6px 0 0;
+    width: 100%;
+    margin: 0;
+    box-shadow: none;
+  }
+  .timeline__event__icon:before, .timeline__event__icon:after {
+    display: none;
+  }
+  .timeline__event__date {
+    border-radius: 0;
+    padding: 20px;
+  }
+  .timeline__event:nth-child(2n+1) {
+    flex-direction: column;
+    align-self: center;
+  }
+  .timeline__event:nth-child(2n+1) .timeline__event__date {
+    border-radius: 0;
+    padding: 20px;
+  }
+  .timeline__event:nth-child(2n+1) .timeline__event__icon {
+    border-radius: 6px 6px 0 0;
+    margin: 0;
+  }
+}
+@-webkit-keyframes fillLeft {
+  100% {
+    right: 100%;
+  }
+}
+@keyframes fillLeft {
+  100% {
+    right: 100%;
+  }
+}
+@-webkit-keyframes fillTop {
+  100% {
+    top: 100%;
+  }
+}
+@keyframes fillTop {
+  100% {
+    top: 100%;
+  }
+}
+@-webkit-keyframes fillLeftOdd {
+  100% {
+    left: 100%;
+  }
+}
+@keyframes fillLeftOdd {
+  100% {
+    left: 100%;
+  }
+}
+    .bsb-overlay-hover {
+    /* opacity: 0.5; */
+    background-color: rgb(0,0,0);
+    position: relative;
+}
+.bsb-overlay-hover:hover>figcaption {
+    opacity: 1;
+    transition: opacity .15s linear .1s;
+}
+.bsb-overlay-hover>figcaption {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 1;
+    background-color: rgba(0,0,0,0.4);
+}
+.bsb-overlay-hover>a:after, .bsb-overlay-hover>figcaption {
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.bsb-overlay-hover img{
+  height: 300px;
+  width: 100%;
+  object-fit: cover;
+}
+.responsive-container-block {
+  min-height: 75px;
+  height: fit-content;
+  width: 100%;
+  padding-top: 0px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 0px;
+  margin-right: auto;
+  margin-bottom: 0px;
+  margin-left: auto;
+  justify-content: flex-start;
+}
+
+.text-blk {
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  line-height: 25px;
+}
+
+.responsive-container-block.bigContainer {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 10px;
+  padding-right: 50px;
+  padding-bottom: 10px;
+  padding-left: 50px;
+}
+
+.text-blk.headingText {
+  font-size: 23px;
+  font-weight: 700;
+  line-height: 28px;
+  color: rgb(0, 135, 177);
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 10px;
+  margin-left: 0px;
+  padding-top: 0px;
+  padding-right: 10px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+}
+
+.allText {
+  padding-top: 0px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  width: 50%;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+}
+
+.text-blk.subHeadingText {
+  color: rgb(102, 102, 102);
+  font-size: 32px;
+  line-height: 40px;
+  font-weight: 700;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 15px;
+  margin-left: 0px;
+  padding-top: 0px;
+  padding-right: 10px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+}
+
+.text-blk.description {
+  font-size: 18px;
+  line-height: 28px;
+  color: rgb(153, 153, 153);
+  padding-top: 0px;
+  padding-right: 10px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 40px;
+  margin-left: 0px;
+}
+
+.explore {
+  font-size: 18px;
+  line-height: 28px;
+  color: rgb(255, 255, 255);
+  background-color: rgb(0, 135, 177);
+  border-top-width: 0px;
+  border-right-width: 0px;
+  border-bottom-width: 0px;
+  border-left-width: 0px;
+  border-top-style: outset;
+  border-right-style: outset;
+  border-bottom-style: outset;
+  border-left-style: outset;
+  border-top-color: rgb(244, 152, 146);
+  border-right-color: rgb(244, 152, 146);
+  border-bottom-color: rgb(244, 152, 146);
+  border-left-color: rgb(244, 152, 146);
+  border-image-source: initial;
+  border-image-slice: initial;
+  border-image-width: initial;
+  border-image-outset: initial;
+  border-image-repeat: initial;
+  cursor: pointer;
+  box-shadow: rgba(244, 152, 146, 0.25) 0px 10px 20px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  padding-top: 9px;
+  padding-right: 45px;
+  padding-bottom: 9px;
+  padding-left: 45px;
+}
+
+.explore:hover {
+  background-image: initial;
+  background-position-x: initial;
+  background-position-y: initial;
+  background-size: initial;
+  background-repeat-x: initial;
+  background-repeat-y: initial;
+  background-attachment: initial;
+  background-origin: initial;
+  background-clip: initial;
+  background-color: #fff;
+  color: rgb(0, 135, 177);
+}
+
+.responsive-container-block.Container {
+  margin-top: 80px;
+  margin-right: auto;
+  margin-bottom: 50px;
+  margin-left: auto;
+  justify-content: center;
+  align-items: center;
+  max-width: 1320px;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+}
+
+.responsive-container-block.Container.bottomContainer {
+  flex-direction: row;
+  margin-top: 50px;
+  margin-right: auto;
+  margin-bottom: 50px;
+  margin-left: auto;
+}
+
+.allText.aboveText {
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  margin-left: 40px;
+}
+
+.allText.bottomText {
+  margin-top: 0px;
+  margin-right: 10px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+}
+
+.mainVideo {
+  width: 85%;
+  height: 450px;
+  margin-top: -30px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.videoContainer {
+  width: 46%;
+  height: 600px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  padding-top: 0px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  padding-left: 10px;
+}
+
+.mainVideo {
+  z-index: 10;
+}
+
+.dotsImg {
+  position: absolute;
+  width: 80%;
+  height: 600px;
+  top: 0px;
+  right: 0px;
+  object-fit: cover;
+}
+
+@media (max-width: 1024px) {
+  .responsive-container-block.Container {
+    max-width: 850px;
+  }
+
+  .text-blk.description {
+    font-size: 18px;
+  }
+
+  .allText {
+    width: 40%;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 20px;
+  }
+
+  .responsive-container-block.bigContainer {
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+  }
+
+  .text-blk.subHeadingText {
+    font-size: 30px;
+  }
+
+  .responsive-container-block.Container.bottomContainer {
+    margin-top: 80px;
+    margin-right: auto;
+    margin-bottom: 50px;
+    margin-left: auto;
+  }
+
+  .responsive-container-block.Container {
+    max-width: 830px;
+  }
+
+  .allText.aboveText {
+    margin-top: 30px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 40px;
+  }
+
+  .allText.bottomText {
+    margin-top: 30px;
+    margin-right: 40px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+  }
+
+  .allText.bottomText {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    margin-right: 0px;
+    margin-bottom: 30px;
+    margin-left: 0px;
+  }
+
+  .responsive-container-block.Container.bottomContainer {
+    flex-direction: column;
+  }
+
+  .text-blk.headingText {
+    text-align: center;
+    font-size: 22px;
+  }
+
+  .text-blk.subHeadingText {
+    text-align: center;
+  }
+
+  .text-blk.description {
+    text-align: center;
+  }
+
+  .explore {
+    margin-top: 0px;
+    margin-right: auto;
+    margin-bottom: 0px;
+    margin-left: auto;
+  }
+
+  #inc0s {
+    margin-top: 0px;
+    margin-right: auto;
+    margin-bottom: 0px;
+    margin-left: auto;
+  }
+
+  .dotsImg {
+    width: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .videoContainer {
+    width: 100%;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+  }
+
+  .mainVideo {
+    width: 100%;
+  }
+
+  .allText.bottomText {
+    margin-top: 30px;
+    margin-right: 0px;
+    margin-bottom: 60px;
+    margin-left: 0px;
+  }
+
+  .text-blk.description {
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+  }
+
+  .text-blk.headingText {
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+  }
+
+  .text-blk.subHeadingText {
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+  }
+
+  .mainVideo {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+  }
+}
+
+@media (max-width: 768px) {
+  .allText {
+    width: 100%;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+  }
+
+  .responsive-container-block.Container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .text-blk.headingText {
+    text-align: center;
+  }
+
+  .text-blk.subHeadingText {
+    text-align: center;
+    font-size: 28px;
+    line-height: 38px;
+  }
+
+  .text-blk.description {
+    text-align: center;
+    font-size: 18px;
+    line-height: 27px;
+  }
+
+  .allText {
+    margin-top: 40px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+  }
+
+  .allText.aboveText {
+    margin-top: 40px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+  }
+
+  .responsive-container-block.Container {
+    margin-top: 80px;
+    margin-right: auto;
+    margin-bottom: 50px;
+    margin-left: auto;
+  }
+
+  .responsive-container-block.Container.bottomContainer {
+    margin-top: 50px;
+    margin-right: auto;
+    margin-bottom: 50px;
+    margin-left: auto;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 10px;
+  }
+
+  .allText.bottomText {
+    margin-top: 40px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+  }
+
+  .allText.bottomText {
+    margin-top: 40px;
+    margin-right: 0px;
+    margin-bottom: 60px;
+    margin-left: 0px;
+  }
+
+  .mainVideo {
+    height: 400px;
+  }
+
+  .videoContainer {
+    height: 550px;
+  }
+
+  .explore {
+    font-size: 16px;
+    padding-top: 8px;
+    padding-right: 40px;
+    padding-bottom: 8px;
+    padding-left: 40px;
+  }
+
+  .responsive-container-block.bigContainer {
+    padding-top: 0px;
+    padding-right: 50px;
+    padding-bottom: 0px;
+    padding-left: 50px;
+  }
+}
+
+@media (max-width: 500px) {
+  .responsive-container-block.Container {
+    padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .responsive-container-block.bigContainer {
+    padding-top: 10px;
+    padding-right: 25px;
+    padding-bottom: 10px;
+    padding-left: 25px;
+  }
+
+  .allText {
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    width: 100%;
+  }
+
+  .responsive-container-block.bigContainer {
+    padding-top: 10px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+  }
+
+  .explore {
+    font-size: 16px;
+    line-height: 25px;
+    padding: 8px 35px 8px 35px;
+  }
+
+  .dotsImg {
+    width: 80%;
+    height: 100%;
+  }
+
+  .mainVideo {
+    height: 260px;
+  }
+
+  .videoContainer {
+    height: 320px;
+  }
+
+  .responsive-container-block.Container.bottomContainer {
+    padding: 0 0 0 0;
+  }
+
+  .text-blk.description {
+    font-size: 16px;
+    line-height: 23px;
+    margin: 0 0 30px 0;
+  }
+
+  .text-blk.subHeadingText {
+    font-size: 24px;
+  }
+}
+
+  </style>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#"
+            ><img src="assets/img/logo.jpg" width="70px" alt=""
+          /></a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 py-2">
+              <li class="nav-item">
+                <a class="nav-link " aria-current="page" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="about.html">About Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="services.html">Our Services</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="portfolio.html">Portfolio</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " href="contact.html">Contact Us</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <section class="hero-section ">
+      <div class="overlay"></div>
+      <div class="hero-content">
+        <h1 class="display-4" data-aos="fade-up">About Us</h1>
+        
+        
+
+      </div>
+    </section>
+<section class="bg-light">
+  <div class="responsive-container-block bigContainer" >
+    <div class="responsive-container-block Container bottomContainer">
+      <div class="allText bottomText" data-aos="fade-right">
+        <h3 class="text-blk headingText">
+          About
+        </h3>
+        <h2 class="text-blk subHeadingText">
+          We build to your bespoke
+        </h2>
+        <p class="text-blk description">
+          The Kreative is a creative boutique with a vision to turn creative acumen into outstanding work. Having worked in multinational network agencies for around two decades, we offer the culture and work quality of a big agency and the agility of a smaller one. 
+        </p>
+        <a>
+          <button class="explore">
+            View More
+          </button>
+        </a>
+      </div>
+      <div class="videoContainer" data-aos="fade-left">
+        <iframe allowfullscreen="allowfullscreen" class="mainVideo" controls="controls" src="https://www.youtube.com/embed/K4TOrB7at0Y?si=djpvoUbzcn3nEi3R">
+        </iframe>
+        
+        <img class="dotsImg image-block" src="assets/img/magicpattern-polka-dot-pattern-1727356217949.png">
+      </div>
+    </div>
+  </div>
+</section>
+<section class="py-3 py-md-5 py-xl-8 ">
+    <div class="container">
+      <div class="row justify-content-md-center">
+        <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6 " data-aos="zoom-in">
+          <h2 class="fs-6 text-secondary mb-2 text-uppercase text-center">Our Team</h2>
+          <p class="display-5 mb-4 mb-md-5 text-center">With Our Team, you can expect personalized attention and engaging designs.</p>
+          <hr class="w-50 mx-auto mb-5 mb-xl-9 border-dark-subtle">
+        </div>
+      </div>
+    </div>
+  
+    <div class="container overflow-hidden">
+      <div class="row gy-4 gy-lg-0 justify-content-center">
+        <div class="col-12 col-lg-4" data-aos="fade-right">
+          <div class="card border-0">
+            <figure class="card-img-top m-0 overflow-hidden bsb-overlay-hover">
+              <a href="#!">
+                <img class="img-fluid bsb-scale bsb-hover-scale-up" loading="lazy" src="https://bootstrapbrain.com/demo/components/teams/team-2/assets/img/team-img-3.jpg" alt="Flora Nyra">
+              </a>
+              <figcaption>
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-eye text-white bsb-hover-fadeInLeft" viewBox="0 0 16 16">
+                  <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
+                  <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
+                </svg>
+                <h4 class="h6 text-white bsb-hover-fadeInRight mt-2">Read More</h4>
+              </figcaption>
+            </figure>
+            <div class="card-body border bg-white p-4">
+              <h2 class="card-title h4 fw-bold mb-3">Lav Dhruv
+              </h2>
+              <p class="card-text text-secondary">20 years in advertising & media. Was heading the legendary MINI Cooper at Hakuhodo before this. Have worked with Ogilvy, TBWA, L&K Saatchi, HS Ad, Zee and Network 18 earlier.
+              </p>
+              </div>
+            <div class="card-footer border border-top-0 bg-white p-4">
+              <ul class="nav mb-0 bsb-nav-sep">
+                <li class="nav-item text-secondary">
+                  <a class="nav-link link-secondary p-0 pe-3 d-inline-flex align-items-center" href="#!">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-lightbulb text-primary" viewBox="0 0 16 16">
+                      <path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1z" />
+                    </svg>
+                    <span class="ms-2 fs-6">Product Manager</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-4">
+          <div class="card border-0" data-aos="fade-left">
+            <figure class="card-img-top m-0 overflow-hidden bsb-overlay-hover">
+              <a href="#!">
+                <img class="img-fluid bsb-scale bsb-hover-scale-up" loading="lazy" src="https://bootstrapbrain.com/demo/components/teams/team-2/assets/img/team-img-3.jpg" alt="Flora Nyra">
+              </a>
+              <figcaption>
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-eye text-white bsb-hover-fadeInLeft" viewBox="0 0 16 16">
+                  <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
+                  <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
+                </svg>
+                <h4 class="h6 text-white bsb-hover-fadeInRight mt-2">Read More</h4>
+              </figcaption>
+            </figure>
+            <div class="card-body border bg-white p-4">
+              <h2 class="card-title h4 fw-bold mb-3">Sanatkumar Dhir
+              </h2>
+              <p class="card-text text-secondary">20 years in advertising & media. Was heading the legendary MINI Cooper at Hakuhodo before this. Have worked with Ogilvy, TBWA, L&K Saatchi, HS Ad, Zee and Network 18 earlier.
+              </p>
+            </div>
+            <div class="card-footer border border-top-0 bg-white p-4">
+              <ul class="nav mb-0 bsb-nav-sep">
+                <li class="nav-item text-secondary">
+                  <a class="nav-link link-secondary p-0 pe-3 d-inline-flex align-items-center" href="#!">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-layers text-primary" viewBox="0 0 16 16">
+                      <path d="M8.235 1.559a.5.5 0 0 0-.47 0l-7.5 4a.5.5 0 0 0 0 .882L3.188 8 .264 9.559a.5.5 0 0 0 0 .882l7.5 4a.5.5 0 0 0 .47 0l7.5-4a.5.5 0 0 0 0-.882L12.813 8l2.922-1.559a.5.5 0 0 0 0-.882l-7.5-4zm3.515 7.008L14.438 10 8 13.433 1.562 10 4.25 8.567l3.515 1.874a.5.5 0 0 0 .47 0l3.515-1.874zM8 9.433 1.562 6 8 2.567 14.438 6 8 9.433z" />
+                    </svg>
+                    <span class="ms-2 fs-6">Financial Analyst</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+  <section class="bg-light py-5">
+    <div class="title-section text-center mb-5">
+      <h1 data-aos="zoom-in">Our Values</h1>
+    </div>
+<div class="timeline"> 
+  <div class="timeline__event  animated fadeInUp delay-3s timeline__event--type1" data-aos="fade-left">
+    <div class="timeline__event__icon ">
+      <img src="assets/img/vecteezy_root-logo-icon-design-vector_8326059.svg" width="80px" alt="">
+
+    </div>
+    <div class="timeline__event__date">
+      People
+    </div>
+    <div class="timeline__event__content ">
+      <div class="timeline__event__title">
+        
+      </div>
+      <div class="timeline__event__description mt-2">
+        <p>Be rooted in a human need
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="timeline__event animated fadeInUp delay-2s timeline__event--type2" data-aos="fade-right">
+    <div class="timeline__event__icon">
+      <img src="assets/img/vecteezy_goal-setting-target-with-arrow_8196353-0/1e1cc19f-2858-4d4c-b1a2-c8efd6cf6929-1.svg" style="border-radius: 50%;" width="80px" alt="">
+
+    </div>
+    <div class="timeline__event__date">
+      Purpose
+    </div>
+    <div class="timeline__event__content">
+      <div class="timeline__event__title">
+        
+      </div>
+      <div class="timeline__event__description mt-2">
+        <p> Play a real and valuable role in people’s life
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="timeline__event animated fadeInUp delay-1s timeline__event--type3" data-aos="fade-left">
+    <div class="timeline__event__icon">
+      <img src="https://st.depositphotos.com/71264702/60706/v/450/depositphotos_607066144-stock-illustration-social-participation-flat-style-illustration.jpg" style="border-radius: 50%;" width="80px" alt="">
+
+    </div>
+    <div class="timeline__event__date">
+      Participation
+    </div>
+    <div class="timeline__event__content">
+      <div class="timeline__event__title">
+        
+      </div>
+      <div class="timeline__event__description mt-2">
+        <p>Be a source of action, not just words
+        </p>
+      </div>
+
+    </div>
+  </div>
+  <div class="timeline__event animated fadeInUp timeline__event--type1" data-aos="fade-right">
+    <div class="timeline__event__icon">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMhjCoKpjOxWE1aC_YoceuUL3Jf6pRUrAVSA&s" style="border-radius: 50%;" width="80px" alt="">
+
+    </div>
+    <div class="timeline__event__date">
+      Populism
+    </div>
+    <div class="timeline__event__content">
+      <div class="timeline__event__title">
+          
+      </div>
+      <div class="timeline__event__description mt-2">
+        <p>Connect to what moves broad population
+        </p>
+      </div>
+    </div>
+  </div>
+
+</div>
+  </section>
+    <!-- Footer 13 - Bootstrap Brain Component -->
+<!-- Footer 10 - Bootstrap Brain Component -->
+<footer class="py-3">
+
+  <!-- Widgets - Bootstrap Brain Component -->
+  <div class="py-6 py-md-8 py-xl-10">
+    <div class="container">
+      <div class="row gy-3">
+        <div class="col-12">
+          <div class="footer-logo-wrapper text-center">
+            <a href="#!">
+              <img src="file:///Users/rehanshaikh/Development/the_kreative/assets/img/logo.jpg" alt="BootstrapBrain Logo" width="100" class="img-fluid" >
+            </a>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="link-wrapper">
+            <ul class="m-0 list-unstyled d-flex justify-content-center gap-3">
+              <li>
+                <a href="#!" class="link-underline-opacity-0 link-opacity-75-hover link-underline-opacity-100-hover link-offset-1 link-dark link-opacity-75 fs-7">
+                  Home
+                </a>
+              </li>
+              <li>
+                <a href="#!" class="link-underline-opacity-0 link-opacity-75-hover link-underline-opacity-100-hover link-offset-1 link-dark link-opacity-75 fs-7">
+                  About Us
+                </a>
+              </li>
+              <li>
+                <a href="#!" class="link-underline-opacity-0 link-opacity-75-hover link-underline-opacity-100-hover link-offset-1 link-dark link-opacity-75 fs-7">
+                  Our Services
+                </a>
+              </li>
+              <li>
+                <a href="#!" class="link-underline-opacity-0 link-opacity-75-hover link-underline-opacity-100-hover link-offset-1 link-dark link-opacity-75 fs-7">
+                  Portfolio
+                </a>
+              </li>
+              <li>
+                <a href="#!" class="link-underline-opacity-0 link-opacity-75-hover link-underline-opacity-100-hover link-offset-1 link-dark link-opacity-75 fs-7">
+                  Contact
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Copyright - Bootstrap Brain Component -->
+  <div>
+    <div class="container">
+      <div class="row gy-3 gy-sm-0 align-items-sm-center">
+        <div class="col-sm-6">
+          <div class="copyright-wrapper d-block mb-1 fs-9 text-center text-sm-start">
+            &copy; 2024. All Rights Reserved.
+          </div>
+         
+        </div>
+        <div class="col-sm-6">
+          <div class="social-media-wrapper">
+            <ul class="m-0 list-unstyled d-flex justify-content-center justify-content-sm-end gap-3">
+              <li>
+                <a href="#!" class="link-opacity-75-hover link-dark">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-youtube" viewBox="0 0 16 16">
+                    <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.01 2.01 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.01 2.01 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31 31 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.01 2.01 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A100 100 0 0 1 7.858 2zM6.4 5.209v4.818l4.157-2.408z" />
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="#!" class="link-opacity-75-hover link-dark">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+                    <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951" />
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="#!" class="link-opacity-75-hover link-dark">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter" viewBox="0 0 16 16">
+                    <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334q.002-.211-.006-.422A6.7 6.7 0 0 0 16 3.542a6.7 6.7 0 0 1-1.889.518 3.3 3.3 0 0 0 1.447-1.817 6.5 6.5 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.32 9.32 0 0 1-6.767-3.429 3.29 3.29 0 0 0 1.018 4.382A3.3 3.3 0 0 1 .64 6.575v.045a3.29 3.29 0 0 0 2.632 3.218 3.2 3.2 0 0 1-.865.115 3 3 0 0 1-.614-.057 3.28 3.28 0 0 0 3.067 2.277A6.6 6.6 0 0 1 .78 13.58a6 6 0 0 1-.78-.045A9.34 9.34 0 0 0 5.026 15" />
+                  </svg>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</footer>
+    <div class="cursor"></div>
+    <script src="assets/js/cursor.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1200,  // Animation duration in ms
+            once: true,
+        });
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+      integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+      integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
