@@ -327,6 +327,9 @@ a#scroll-btn {
     .section-client_logos .img-box img {
         filter: grayscale(0);
     }
+	  .cursor{
+		  display:none !important;
+	  }
     
 }
 
