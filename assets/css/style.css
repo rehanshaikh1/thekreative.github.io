@@ -25,6 +25,8 @@ section{
     
 }
 .hero-section.not_home{
+	    height: 30vh !important;
+
     background: url('https://images.pexels.com/photos/534219/pexels-photo-534219.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2') no-repeat center center;
 }
 
